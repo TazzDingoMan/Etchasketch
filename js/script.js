@@ -4,10 +4,10 @@ const pixel = document.createElement('div');
 let squareSize = 16;
 
 function createDiv(size) {
-    const div = document.createElement('div');
-    div.classList.add('box');
-    div.style.width = `${size}px`;
-    div.style.height = `${size}px`;
+    const pixel = document.createElement('div');
+    pixel.classList.add('box');
+    pixel.style.width = `${size}px`;
+    pixel.style.height = `${size}px`;
 
     return div;
 }
@@ -19,11 +19,11 @@ function resetFrame(pixels) {
     createGrid(squareSize);
     };
 
-createGrid();
+createGrid(16);
 
 
 
-function createGrid() {
+function createGrid(squareSize) {
 for (let i = 1; i <= squareSize; i++) {
     const column = document.createElement('div');
     column.classList.add('column');
