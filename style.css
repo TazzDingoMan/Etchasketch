@@ -28,9 +28,7 @@ h2 {
     margin-bottom: 3rem;
     font-size: 5rem;
     font-style: italic;
-    background: linear-gradient(to right, #2196f3, #f44336);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
 }
 
 #container {
@@ -48,8 +46,18 @@ h2 {
     height: 40rem;
     margin-left: auto;
     margin-right: auto;
-    background-color: blue;
+
   }
+
+.featurebutton {
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 7px;
+  margin: 1rem;
+  width: 100px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
 
 #menucontainer {
     display: flex;

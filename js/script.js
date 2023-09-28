@@ -1,17 +1,31 @@
 
 const container = document.querySelector('#container');
-let squareSize = 32;
+const addColorButtons = document.querySelectorAll('.featurebutton');
+const userColorPicker = document. querySelector('#input-color');
 let color = 'black';
+
+const resetBtn = document.createElement('button');
+const rainbowBtn = document.createElement('button');
 
 function resetFrame() {
     let allCells = document.querySelectorAll(".gamecell").forEach(cell => {
         cell.style.backgroundColor = "white";
     })
-};
+    let cellNumber = +prompt("How many squares per side? (Maximum: 100)");
+    if (isNaN(cellNumber) || cellNumber <= 0 || cellNumber > 100) {
+        alert("You must enter a positive integer (maximum: 100).")
+        return;
+    }
+    const mainContainerDiv = document.getElementById("maincontainer");
+    mainContainerDiv.innerHTML = '';
+    createGrid(cellNumber);
+}
 
+function rainbowColor() {
+    color = `hsl(${Math.random() * 360}, 100%, 50%)`
+}
 
 function colorGrid() {
-    console.log("triggers colorGrid")
     switch (color) {
         case 'rainbow':
             this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
@@ -45,16 +59,33 @@ function colorGrid() {
     }
 }
 
-function createGrid(squareSize) {
-    squareSize = squareSize || 16;
-    let cellWidth = 40/squareSize + "rem";
-    let cellHeight = 40/squareSize + "rem";
+function changeColor(event) {
+    switch (event.target.dataset.color) {
+        case 'rainbow':
+            color = 'rainbow'
+            break;
+        case 'opaque':
+            color = 'opaque';
+            break
+        case 'eraser':
+            color = 'eraser';
+            break;
+        default:
+            color = 'black';
+            break;
+    }
+}
+
+function createGrid(cellNumber) {
+    cellNumber = cellNumber || 16;
+    let cellWidth = 40/cellNumber + "rem";
+    let cellHeight = 40/cellNumber + "rem";
     const mainContainerDiv = document.getElementById("maincontainer");
     let divArray = [];
-    for (let i = 1; i <= squareSize; i++) {
+    for (let i = 1; i <= cellNumber; i++) {
         divArray[i] = document.createElement("div");
         mainContainerDiv.appendChild(divArray[i]);
-            for (let j = 1; j <= squareSize; j++) {
+            for (let j = 1; j <= cellNumber; j++) {
             const newDiv = document.createElement('div');
             const classAttribute = document.createAttribute("class");
             classAttribute.value = "gamecell";
@@ -70,11 +101,16 @@ onLoad();
 
 createGrid(32);
 
-const resetBtn = document.createElement('button');
 
-resetBtn.textContent = 'Reset Frame'
+
+resetBtn.textContent = 'Reset'
 resetBtn.addEventListener('click', resetFrame);
 menucontainer.appendChild(resetBtn);
+
+rainbowBtn.textContent = 'Rainbow'
+rainbowBtn.addEventListener('click', rainbowColor);
+menucontainer.appendChild(rainbowBtn);
+
 
 function onLoad() {
     let gridPixels = document.querySelectorAll(".gamecell");
