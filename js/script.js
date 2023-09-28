@@ -1,6 +1,6 @@
 
 const container = document.querySelector('#container');
-let squareSize = 16;
+let squareSize = 32;
 let color = 'black';
 
 function resetFrame() {
@@ -68,7 +68,7 @@ function createGrid(squareSize) {
 onLoad();
 }
 
-createGrid(16);
+createGrid(32);
 
 const resetBtn = document.createElement('button');
 
