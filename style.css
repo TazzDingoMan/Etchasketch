@@ -4,24 +4,7 @@ html {
     font-size: 15px;
 }
 
-  @media only screen and (max-width: 800px) {
-    html {
-      font-size: 10px;
-    }
-  }
 
-  @media only screen and (max-width: 550px) {
-    html {
-      font-size: 8px;
-    }
-  }
-
-  @media only screen and (max-width: 450px) {
-    html {
-      font-size: 7px;
-    }
-
-}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -57,6 +40,7 @@ h2 {
 
 #maincontainer {
     display: flex;
+    flex: 1;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -64,6 +48,7 @@ h2 {
     height: 40rem;
     margin-left: auto;
     margin-right: auto;
+    background-color: blue;
   }
 
 #menucontainer {
@@ -72,13 +57,13 @@ h2 {
     height: 5rem;
     margin-bottom: 3rem;
     justify-content: center;
+
   }
 
 .gamecell {
     background-color: white;
     padding: 0px;
     border: 0px solid black;
-    animation: gameShadowZoom 3s ease infinite;
 }
 
 .gamecell:hover {
