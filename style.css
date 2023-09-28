@@ -1,7 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
+html {
+    font-size: 15px;
+}
 
-/* style.css */
+  @media only screen and (max-width: 800px) {
+    html {
+      font-size: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 550px) {
+    html {
+      font-size: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    html {
+      font-size: 7px;
+    }
+
+}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -9,32 +29,6 @@ body {
     background-color: #f5f5f5;
     font-size: 1.6rem;
     background-color: greenyellow;
-  }
-
-#container {
-    max-width: 960px;
-    min-height: 960px;
-    border: 1px solid teal;
-    background-color: black;
-    padding: 0px;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-}
-
-#controls {
-    width: 960px;
-    height: 30px;
-    border: 1px solid purple;
-    background-color: plum;
-    padding: 0px;
-    margin: 0px;
-    display: flex;
-}
-
-.box {
-    border: 0.5px solid rgba(0, 0, 0, 0.05);
-    background-color: white;
   }
 
 h1 {
@@ -56,25 +50,37 @@ h2 {
     -webkit-text-fill-color: transparent;
 }
 
-.pixel {
-    border: 1px black solid;
-    padding: 0px;
-    flex:1;
-    margin: 0px;
-    width: 60px;
-    height: 60px;
-    background-color: aliceblue;
+#container {
+  display: flex;
+  flex-direction: column;
 }
 
-.pixel:hover {
-    background-color: grey;
-}
-
-.hovered {
-    background-color: red;
-}
-
-.column {
+#maincontainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 40rem;
+    height: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#menucontainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 5rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
+
+.gamecell {
+    background-color: white;
+    padding: 0px;
+    border: 0px solid black;
+    animation: gameShadowZoom 3s ease infinite;
+}
+
+.gamecell:hover {
+  background-color: purple;
 }

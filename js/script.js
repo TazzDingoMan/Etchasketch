@@ -1,47 +1,82 @@
 
 const container = document.querySelector('#container');
-const pixel = document.createElement('div');
 let squareSize = 16;
+let color = 'black';
 
-function createDiv(size) {
-    const pixel = document.createElement('div');
-    pixel.classList.add('box');
-    pixel.style.width = `${size}px`;
-    pixel.style.height = `${size}px`;
+function resetFrame() {
+    let allCells = document.querySelectorAll(".gamecell").forEach(cell => {
+        cell.style.backgroundColor = "white";
+    })
+};
 
-    return div;
+
+function colorGrid() {
+    console.log("triggers colorGrid")
+    switch (color) {
+        case 'rainbow':
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.classList.remove('opaque');
+            break;
+        case 'opaque':
+            if (this.style.backgroundColor.match(/rgba/)) {
+                let currentOpacity = Number(this.style.backgroundColor.slice(-4, -1));
+                if (currentOpacity <= 0.9) {
+                    this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
+                    this.classList.add('opaque');
+                }
+            } else if (this.classList == 'opaque' && this.style.backgroundColor == 'rgb(0, 0, 0)') {
+                return;
+            } else {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            }
+            break;
+        case 'eraser':
+            this.style.backgroundColor = '#ffffff';
+            this.classList.remove('opaque');
+            break;
+        case 'black':
+            this.style.backgroundColor = '#000000';
+            this.classList.remove('opaque');
+            break;
+        default:
+            this.style.backgroundColor = color;
+            this.classList.remove('opaque');
+            break;
+    }
 }
 
-function resetFrame(pixels) {
-    while (container.firstChild) {
-        container.removeChild(container.lastChild);
+function createGrid(squareSize) {
+    squareSize = squareSize || 16;
+    let cellWidth = 40/squareSize + "rem";
+    let cellHeight = 40/squareSize + "rem";
+    const mainContainerDiv = document.getElementById("maincontainer");
+    let divArray = [];
+    for (let i = 1; i <= squareSize; i++) {
+        divArray[i] = document.createElement("div");
+        mainContainerDiv.appendChild(divArray[i]);
+            for (let j = 1; j <= squareSize; j++) {
+            const newDiv = document.createElement('div');
+            const classAttribute = document.createAttribute("class");
+            classAttribute.value = "gamecell";
+            newDiv.setAttributeNode(classAttribute);
+            const widthHeightAttribute = document.createAttribute("style")
+            widthHeightAttribute.value = `width: ${cellWidth}; height: ${cellHeight}`;
+            newDiv.setAttributeNode(widthHeightAttribute);
+        divArray[i].appendChild(newDiv);
+        }
     }
-    createGrid(squareSize);
-    };
+onLoad();
+}
 
 createGrid(16);
-
-
-
-function createGrid(squareSize) {
-for (let i = 1; i <= squareSize; i++) {
-    const column = document.createElement('div');
-    column.classList.add('column');
-    for (let j = 1; j <= squareSize; j++) {
-        const pixel = document.createElement('div');
-        pixel.addEventListener("click", function handleMouseOver () {
-            pixel.classList.add('hovered');
-            });
-        pixel.classList.add('pixel');
-        column.appendChild(pixel);
-    }
-    container.appendChild(column);
-}}
-
-
 
 const resetBtn = document.createElement('button');
 
 resetBtn.textContent = 'Reset Frame'
 resetBtn.addEventListener('click', resetFrame);
-controls.appendChild(resetBtn);
+menucontainer.appendChild(resetBtn);
+
+function onLoad() {
+    let gridPixels = document.querySelectorAll(".gamecell");
+    gridPixels.forEach(gridPixel => gridPixel.addEventListener("click", colorGrid));
+    };
